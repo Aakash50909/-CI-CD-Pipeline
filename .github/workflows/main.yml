@@ -1,0 +1,38 @@
+# Name of your CI/CD pipeline
+name: Deploy Website to GitHub Pages
+
+# This pipeline runs on any push to the 'main' branch
+on:
+  push:
+    branches: [ "main" ]
+
+# Allow the pipeline to write to your repo (to deploy the page)
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Define the job(s) to run
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Use a standard cloud-based runner
+    steps:
+      # 1. Checks out your repository's code
+      - name: Checkout code
+        uses: actions/checkout@v4 # This is a pre-built "action"
+
+      # 2. Sets up the GitHub Pages environment
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      # 3. "Builds" the site (in our case, just prepares the HTML file)
+      - name: Build website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload the root directory (where index.html is)
+          path: '.' 
+
+      # 4. Deploys the built site to GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
