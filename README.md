@@ -6,7 +6,7 @@ This repository demonstrates a lightweight CI/CD approach using **GitHub Pages**
 * `.github/workflows/`: Contains the YAML files for automated deployment.
 * `index.html`: The main entry point for the static site.
 
-## 🚀 The Pipeline
+##  The Pipeline
 1.  **Trigger:** On every `push` to the `main` branch.
 2.  **Action:** GitHub Actions runner initializes.
 3.  **Deploy:** Automatically pushes the build artifacts to the `gh-pages` branch/environment.
